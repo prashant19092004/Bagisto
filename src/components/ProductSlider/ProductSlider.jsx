@@ -4,7 +4,7 @@ import { FaRegHeart } from "react-icons/fa";
 import '../style.css';
 import { FaArrowRightArrowLeft } from 'react-icons/fa6';
 
-const ProductSlider = () => {
+const ProductSlider = (props) => {
 
   let products = [
     {
@@ -91,27 +91,38 @@ const ProductSlider = () => {
   ]
 
   function moveRight(){
-    const slider = document.querySelector(".product-slider");
+    const slider = document.querySelectorAll(".product-slider");
     const card = document.querySelector(".product-card");
     let scrollWidth = card.clientWidth + 20;
     
-    slider.scrollBy({
-      top: 0,
-      left: scrollWidth,
-      behavior: 'smooth'
-    }) 
+    // console.log(slider[0]);
+    slider.forEach((item, index) => {
+      // console.log(index);
+      if(index === props.id){
+        item.scrollBy({
+          top: 0,
+          left: scrollWidth,
+          behavior: 'smooth'
+        })
+      }
+    })
   }
 
   function moveLeft(){
-    const slider = document.querySelector(".product-slider");
+    const slider = document.querySelectorAll(".product-slider");
     const card = document.querySelector(".product-card");
     let scrollWidth = card.clientWidth + 20;
 
-    slider.scrollBy({
-      top: 0,
-      left: -scrollWidth,
-      behavior: 'smooth'
-    }) 
+    slider.forEach((item, index) => {
+      // console.log(index);
+      if(index === props.id){
+        item.scrollBy({
+          top: 0,
+          left: -scrollWidth,
+          behavior: 'smooth'
+        })
+      }
+    })
   }
 
 
